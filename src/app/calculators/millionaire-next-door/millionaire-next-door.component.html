@@ -1,39 +1,46 @@
 <div class="container">
 <form [formGroup]="inputForm" (ngSubmit)="onSubmit()">
     <div *ngIf="!compact">
-    <h1>The "Millionaire Next Door" Calculator</h1>
+    <h1>"The Millionaire Next Door" Calculator</h1>
     <hr>
-    "Multiply your age times your realized pretax annual household income from all sources except inheritances. Divide by ten. This, less any inherited wealth, is what your net worth should be." - Dr. Thomas Stanley, author.
-    <br><br>
+        <p>
+        In his book, The Millionaire Next Door (published 1996), best-selling author, Dr. Thomas J. Stanley, wrote about a formula you can use to calculate your expected net worth: 
+        </p>
+        <p>
+        <strong>"Multiply your age times your realized pretax annual household income from all sources except inheritances. Divide by ten. This, less any inherited wealth, is what your net worth should be."</strong>
+        </p>
+        <p>
+        Given your age and income, how does your net worth match up? If you are in the top quartile for wealth accumulation, you are a PAW, or prodigious accumulator of wealth. If you are in the bottom quartile, you are a UAW, or under accumulator of wealth.
+        </p>
     </div>
     <div class="card rounded bg-light">
         <div class="row mb-4 mt-4 ms-2">
-            <label for="age" class="col-sm-4 col-form-label-xs">Age:</label>
+            <label for="age" class="col-sm-4 col-form-label-xs"><strong>Age:</strong></label>
             <div class="col-sm-4">
-                <choose-quantity id="age" tabindex="1" class="form-control-xs w-50" isReadOnly="{{ resultsAvailable }}" minValue="18" increment="0" decimals="0" formControlName="age"></choose-quantity>
+                <input id="age" tabindex="1" class="form-control-xs w-75" (change)="formatCurrency($event)" onlyNumber="true" formControlName="age">
             </div>
-            <label for="age" class="col-sm-4 col-form-label-xs small">Enter your age.</label>
+            <label for="age" class="col-sm-4 col-form-label-xs">Enter your age.</label>
         </div>
         <div class="row mb-4 ms-2">
-            <label for="grossIncome" class="col-sm-4 col-form-label-xs">Annual wage and salary income:</label>
+            <label for="grossIncome" class="col-sm-4 col-form-label-xs"><strong>Annual wage and salary income:</strong></label>
             <div class="col-sm-4">
-                <choose-quantity id="grossIncome" tabindex="2" class="form-control-xs w-50" isReadOnly="{{ resultsAvailable }}" minValue="0" increment="0" decimals="0" currency="$" formControlName="grossIncome"></choose-quantity>
+                <input id="grossIncome" tabindex="2" class="form-control-xs w-75" (change)="formatCurrency($event)" onlyNumber="true" formControlName="grossIncome">
             </div>
-            <label for="grossIncome" class="col-sm-4 col-form-label-xs small">Enter your gross income.</label>
+            <label for="grossIncome" class="col-sm-4 col-form-label-xs">Enter your gross income.</label>
         </div>
         <div class="row mb-4 ms-2">
-            <label for="otherIncome" class="col-sm-4 col-form-label-xs">Interest and dividend income:</label>
+            <label for="otherIncome" class="col-sm-4 col-form-label-xs"><strong>Interest and dividend income:</strong></label>
             <div class="col-sm-4">
-                <choose-quantity id="otherIncome" tabindex="3" class="form-control-xs w-50" isReadOnly="{{ resultsAvailable }}" minValue="0" increment="0" decimals="0" currency="$" formControlName="otherIncome"></choose-quantity>
+                <input id="otherIncome" tabindex="3" class="form-control-xs w-75" (change)="formatCurrency($event)" onlyNumber="true" formControlName="otherIncome">
             </div>
-            <label for="otherIncome" class="col-sm-4 col-form-label-xs small">Enter any other income you received.</label>
+            <label for="otherIncome" class="col-sm-4 col-form-label-xs">Enter any other income you are receiving.</label>
         </div>
         <div class="row mb-4 ms-2">
-            <label for="inheritance" class="col-sm-4 col-form-label-xs">Inheritance:</label>
+            <label for="inheritance" class="col-sm-4 col-form-label-xs"><strong>Inheritance:</strong></label>
             <div class="col-sm-4">
-                <choose-quantity id="inheritance" tabindex="4" class="form-control-xs w-50" isReadOnly="{{ resultsAvailable }}" minValue="0" increment="0" decimals="0" formControlName="inheritance"></choose-quantity>
+                <input id="inheritance" tabindex="4" class="form-control-xs w-75" (change)="formatCurrency($event)" onlyNumber="true" formControlName="inheritance">
             </div>
-            <label for="inheritance" class="col-sm-4 col-form-label-xs small">Enter the value of all inheritances you received.</label>
+            <label for="inheritance" class="col-sm-4 col-form-label-xs">Enter the value of all inheritances you received.</label>
         </div>
         <div class="row mb-4 ms-2">
 
@@ -53,23 +60,23 @@
         <div class="row mb-4 mt-4 ms-2">
             <div class="col-sm-4 col-form-label-xs">If your Net Worth is less than</div>
             <div class="col-sm-4">  
-                <input id="uawNetWorthStr" class="form-control-xs w-100" [value]="uawNetWorthStr" readonly>
+                <input id="uawNetWorthStr" class="form-control-xs w-75" [value]="uawNetWorthStr" readonly>
             </div>
-            <div class="col-sm-4 col-form-label-xs">you are a <strong>(UAW)</strong> Under Accumulator of Wealth.</div>
+            <div class="col-sm-4 col-form-label-xs">you are a&nbsp; <strong>(UAW)</strong> under accumulator of wealth.</div>
         </div>
         <div class="row mb-4 ms-2">
             <div class="col-sm-4 col-form-label-xs">If your Net Worth is about equal to</div>
             <div class="col-sm-4">
-                <input id="aawNetWorthStr" class="form-control-xs w-100" [value]="aawNetWorthStr" readonly>
+                <input id="aawNetWorthStr" class="form-control-xs w-75" [value]="aawNetWorthStr" readonly>
             </div>
-            <div class="col-sm-4 col-form-label-xs">you are an <strong>(AAW)</strong> Average Accumulator of Wealth.</div>
+            <div class="col-sm-4 col-form-label-xs">you are an <strong>(AAW)</strong> average accumulator of wealth--- not bad!</div>
         </div>
         <div class="row mb-4 ms-2">
             <div class="col-sm-4 col-form-label-xs">If your Net Worth is more than</div>
             <div class="col-sm-4">
-                <input id="pawNetWorthStr" tabindex="3" class="form-control-xs w-100" [value]="pawNetWorthStr" readonly>
+                <input id="pawNetWorthStr" tabindex="3" class="form-control-xs w-75" [value]="pawNetWorthStr" readonly>
             </div>
-            <div class="col-sm-4 col-form-label-xs">you are a <strong>(PAW)</strong> Prodigious Accumulator of Wealth.</div>
+            <div class="col-sm-4 col-form-label-xs">you are a&nbsp; <strong>(PAW)</strong> prodigious accumulator of wealth. Totally awesome!!</div>
         </div>
     </div>
 </div>

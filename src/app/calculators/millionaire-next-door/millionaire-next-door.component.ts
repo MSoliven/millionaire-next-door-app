@@ -31,7 +31,7 @@ export class MillionaireNextDoorComponent extends BaseComponent implements OnIni
     super.ngOnInit();
 
     this.inputForm = this.fb.group({
-      age: ["30", Validators.required],
+      age: [ {value:"30", disabled: false}, Validators.required],
       grossIncome: ["$0"],
       otherIncome: ["$0"],
       inheritance: ["$0"],
@@ -65,8 +65,12 @@ export class MillionaireNextDoorComponent extends BaseComponent implements OnIni
 
       this.uawNetWorthStr = FormatUtil.formatNumber(uawNetWorth, 0);
       this.aawNetWorthStr = FormatUtil.formatNumber(aawNetWorth, 0);
-      this.pawNetWorthStr = FormatUtil.formatNumber(pawNetWorth, 0)
+      this.pawNetWorthStr = FormatUtil.formatNumber(pawNetWorth, 0);
 
+      this.inputForm.get("age").disable();
+      this.inputForm.get("grossIncome").disable();
+      this.inputForm.get("otherIncome").disable();
+      this.inputForm.get("inheritance").disable();
     }
     else {
       this.ngOnInit();
@@ -74,5 +78,9 @@ export class MillionaireNextDoorComponent extends BaseComponent implements OnIni
 
     this.resultsAvailable = !this.resultsAvailable;
   }
+
+  formatCurrency(e: any) {
+    e.target.value = FormatUtil.formatNumber(FormatUtil.parseToNumber(e.target.value), 0); 
+  } 
 
 }
