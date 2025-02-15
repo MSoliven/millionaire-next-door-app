@@ -63,9 +63,9 @@ export class MillionaireNextDoorComponent extends BaseComponent implements OnIni
       var uawNetWorth = Math.round(aawNetWorth / 2);
       var pawNetWorth = Math.round(aawNetWorth * 2);
 
-      this.uawNetWorthStr = FormatUtil.formatNumber(uawNetWorth, 0);
-      this.aawNetWorthStr = FormatUtil.formatNumber(aawNetWorth, 0);
-      this.pawNetWorthStr = FormatUtil.formatNumber(pawNetWorth, 0);
+      this.uawNetWorthStr = FormatUtil.formatCurrency(uawNetWorth, 0);
+      this.aawNetWorthStr = FormatUtil.formatCurrency(aawNetWorth, 0);
+      this.pawNetWorthStr = FormatUtil.formatCurrency(pawNetWorth, 0);
 
       this.inputForm.get("age").disable();
       this.inputForm.get("grossIncome").disable();
@@ -80,7 +80,11 @@ export class MillionaireNextDoorComponent extends BaseComponent implements OnIni
   }
 
   formatCurrency(e: any) {
-    e.target.value = FormatUtil.formatNumber(FormatUtil.parseToNumber(e.target.value), 0); 
+    e.target.value = FormatUtil.formatCurrency(FormatUtil.parseToNumber(e.target.value), 0); 
+  } 
+
+  formatNumber(e: any) {
+    e.target.value = FormatUtil.parseToNumber(e.target.value); 
   } 
 
 }

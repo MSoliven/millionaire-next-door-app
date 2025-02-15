@@ -17,7 +17,7 @@
         <div class="row mb-4 mt-4 ms-2">
             <label for="age" class="col-sm-4 col-form-label-xs"><strong>Age:</strong></label>
             <div class="col-sm-4">
-                <input id="age" tabindex="1" class="form-control-xs w-75" (change)="formatCurrency($event)" onlyNumber="true" formControlName="age">
+                <input id="age" tabindex="1" class="form-control-xs w-75" (change)="formatNumber($event)" onlyNumber="true" formControlName="age">
             </div>
             <label for="age" class="col-sm-4 col-form-label-xs">Enter your age.</label>
         </div>
@@ -58,25 +58,25 @@
 <div class="card rounded bg-light">
     <div class="row mb-4">
         <div class="row mb-4 mt-4 ms-2">
-            <div class="col-sm-4 col-form-label-xs">If your Net Worth is less than</div>
+            <div class="col-sm-4 col-form-label-xs">If your net worth is less than</div>
             <div class="col-sm-4">  
                 <input id="uawNetWorthStr" class="form-control-xs w-75" [value]="uawNetWorthStr" readonly>
             </div>
             <div class="col-sm-4 col-form-label-xs">you are a&nbsp; <strong>(UAW)</strong> under accumulator of wealth.</div>
         </div>
         <div class="row mb-4 ms-2">
-            <div class="col-sm-4 col-form-label-xs">If your Net Worth is about equal to</div>
+            <div class="col-sm-4 col-form-label-xs">If your net worth is about equal to</div>
             <div class="col-sm-4">
                 <input id="aawNetWorthStr" class="form-control-xs w-75" [value]="aawNetWorthStr" readonly>
             </div>
             <div class="col-sm-4 col-form-label-xs">you are an <strong>(AAW)</strong> average accumulator of wealth--- not bad!</div>
         </div>
         <div class="row mb-4 ms-2">
-            <div class="col-sm-4 col-form-label-xs">If your Net Worth is more than</div>
+            <div class="col-sm-4 col-form-label-xs">If your net worth is more than</div>
             <div class="col-sm-4">
                 <input id="pawNetWorthStr" tabindex="3" class="form-control-xs w-75" [value]="pawNetWorthStr" readonly>
             </div>
-            <div class="col-sm-4 col-form-label-xs">you are a&nbsp; <strong>(PAW)</strong> prodigious accumulator of wealth. Totally awesome!!</div>
+            <div class="col-sm-4 col-form-label-xs">you are a&nbsp; <strong>(PAW)</strong> prodigious accumulator of wealth--- totally awesome!!</div>
         </div>
     </div>
 </div>
